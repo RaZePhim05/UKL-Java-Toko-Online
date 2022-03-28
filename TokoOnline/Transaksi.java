@@ -38,7 +38,7 @@ public class Transaksi {
             temp = myObj.nextInt();
             if(temp!=99){
                 idBarang.add(temp);
-                System.out.println(barang.getNamaBarang(idBarang.get(i))+"Sebanyak: ");
+                System.out.println(barang.getNamaBarang(idBarang.get(i))+" Sebanyak: ");
                 banyak.add(myObj.nextInt());
                 i++;
             }
@@ -48,7 +48,7 @@ public class Transaksi {
         int total=0; 
         int x = idBarang.size(); 
         for (int j = 0; j < x; j++){ 
-            int jumlah=banyak.get(j) * barang.getHarga(banyak.get(j)); 
+            int jumlah=banyak.get(j) * barang.getHarga(idBarang.get(j)); 
             total+=jumlah; 
             System.out.println(barang.getNamaBarang(idBarang.get(j))+"\t"+ banyak.get(j)+"\t"+ barang.getHarga(idBarang.get(j))+"\t"+ jumlah); 
             transaksi.setTransaksi(barang, idMember, idBarang.get(j), banyak.get(j)); 
@@ -56,7 +56,9 @@ public class Transaksi {
         System.out.println("Total Belanja : "+total); 
         member.editSaldo(idMember, member.getSaldo(idMember)-total); 
     } 
-    public void setTransaksi(Barang barang, int idMember, int idBarang, int banyaknya){ this.idMember.add(idMember); this.idBarang.add(idBarang); 
+    public void setTransaksi(Barang barang, int idMember, int idBarang, int banyaknya){ 
+        this.idMember.add(idMember); 
+        this.idBarang.add(idBarang); 
         this.banyak.add(banyaknya); 
         barang.editStok(idBarang, barang.getStok(idBarang)-banyaknya); 
     } 
